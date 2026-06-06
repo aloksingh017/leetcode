@@ -16,6 +16,12 @@ Constraints:
 
 1 <= nums.length <= 15
 -100 <= nums[i] <= 100
+
+
+
+Time: O(n · 2^n)
+Auxiliary Space (excluding output): O(n)
+Total Space (including result): O(n · 2^n)
 */
 
 #include <bits/stdc++.h>
