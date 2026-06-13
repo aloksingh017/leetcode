@@ -50,6 +50,10 @@ Constraints:
 1 <= requests.length <= 16
 requests[i].length == 2
 0 <= fromi, toi < n
+
+Version	Time	Space
+Your current code (pass by value)	O(2^m · n)	O(m · n)
+Optimized (pass by reference)	O(2^m · n)	O(m + n)
 */
 #include <bits/stdc++.h>
 using namespace std;
