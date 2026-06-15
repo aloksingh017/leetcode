@@ -35,6 +35,13 @@ Constraints:
 2 <= candidates[i] <= 40
 All elements of candidates are distinct.
 1 <= target <= 40
+
+
+The recursion depth is bounded by target / minCandidate, and each level can
+branch into at most N choices. Therefore, the worst-case time complexity is O(N
+T/M
+), where M is the smallest candidate. The auxiliary space complexity is O(T/M)
+due to the recursion stack and current combination path, excluding the output.
 */
 
 class Solution {
