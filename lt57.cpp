@@ -1,118 +1,60 @@
-// The problem was to design four functions:
-// 1. Initialize user_id, window_size, and max_request for a user.
-// 2. Check if the current request for a user is allowed, based on the time
-// window.
-// 3. Check how many requests were approved in the last window.
-// 4. Check how many requests were rejected in the last window.
-// I first implemented a brute-force solution, which took O(N) time.
-// Then, I optimized the solution using binary search, which was fairly
-// straightforward. give me code in c++
+/*
+57. Insert Interval
 
-#include <bits/stdc++.h>
-using namespace std;
+You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval 
+and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.
 
-class RateLimiter {
-private:
-  struct UserData {
-    long long windowSize;
-    int maxRequest;
+Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals
+(merge overlapping intervals if necessary).
 
-    vector<long long> approvedRequests;
-    vector<long long> rejectedRequests;
-  };
+Return intervals after the insertion.
 
-  unordered_map<int, UserData> users;
+Note that you don't need to modify intervals in-place. You can make a new array and return it.
 
-  int countInLastWindow(const vector<long long> &timestamps,
-                        long long currentTime, long long windowSize) {
-    long long windowStart = currentTime - windowSize + 1;
+ 
 
-    auto it = lower_bound(timestamps.begin(), timestamps.end(), windowStart);
+Example 1:
 
-    return timestamps.end() - it;
-  }
+Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
+Output: [[1,5],[6,9]]
+Example 2:
 
+Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
+Output: [[1,2],[3,10],[12,16]]
+Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
+ 
+
+Constraints:
+
+0 <= intervals.length <= 104
+intervals[i].length == 2
+0 <= starti <= endi <= 105
+intervals is sorted by starti in ascending order.
+newInterval.length == 2
+0 <= start <= end <= 105
+*/
+
+
+class Solution {
 public:
-  /*
-      Initialize user configuration.
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        vector<vector<int>> merged;
 
-      userId      : unique user id
-      windowSize  : time window size
-      maxRequest  : maximum allowed requests in that window
-  */
-  void init(int userId, long long windowSize, int maxRequest) {
-    users[userId] = UserData{windowSize, maxRequest, {}, {}};
-  }
+        int i=0;
+        while(i<intervals.size() && intervals[i][1] < newInterval[0]){
+            merged.push_back(intervals[i]);
+            i++;
+        }
+        while(i<intervals.size() && intervals[i][0]<=newInterval[1]){
+            newInterval = {min(intervals[i][0],newInterval[0]), max(intervals[i][1],newInterval[1])};
+            i++;
+        }
+        merged.push_back(newInterval);
 
-  /*
-      Returns true if request is allowed.
-      Returns false if request is rejected.
-  */
-  bool isAllowed(int userId, long long currentTime) {
-    if (users.find(userId) == users.end()) {
-      return false;
+        while(i<intervals.size()){
+            merged.push_back(intervals[i]);
+            i++;
+        }
+        return merged;
     }
-
-    UserData &user = users[userId];
-
-    int approvedCount =
-        countInLastWindow(user.approvedRequests, currentTime, user.windowSize);
-
-    if (approvedCount < user.maxRequest) {
-      user.approvedRequests.push_back(currentTime);
-      return true;
-    } else {
-      user.rejectedRequests.push_back(currentTime);
-      return false;
-    }
-  }
-
-  /*
-      Number of approved requests in the last window.
-  */
-  int getApprovedCount(int userId, long long currentTime) {
-    if (users.find(userId) == users.end()) {
-      return 0;
-    }
-
-    UserData &user = users[userId];
-
-    return countInLastWindow(user.approvedRequests, currentTime,
-                             user.windowSize);
-  }
-
-  /*
-      Number of rejected requests in the last window.
-  */
-  int getRejectedCount(int userId, long long currentTime) {
-    if (users.find(userId) == users.end()) {
-      return 0;
-    }
-
-    UserData &user = users[userId];
-
-    return countInLastWindow(user.rejectedRequests, currentTime,
-                             user.windowSize);
-  }
 };
-
-int main() {
-  RateLimiter limiter;
-
-  limiter.init(101, 10, 3);
-
-  cout << limiter.isAllowed(101, 1) << endl; // true
-  cout << limiter.isAllowed(101, 2) << endl; // true
-  cout << limiter.isAllowed(101, 3) << endl; // true
-  cout << limiter.isAllowed(101, 4) << endl; // false
-
-  cout << limiter.getApprovedCount(101, 4) << endl; // 3
-  cout << limiter.getRejectedCount(101, 4) << endl; // 1
-
-  cout << limiter.isAllowed(101, 12) << endl; // true
-
-  cout << limiter.getApprovedCount(101, 12) << endl; // 3
-  cout << limiter.getRejectedCount(101, 12) << endl; // 1
-
-  return 0;
-}

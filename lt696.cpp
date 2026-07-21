@@ -1,4 +1,6 @@
 /*
+696. Count Binary Substrings
+
 Given a binary string s, return the number of non-empty substrings that have the
 same number of 0's and 1's, and all the 0's and all the 1's in these substrings
 are grouped consecutively.
@@ -32,3 +34,25 @@ s[i] is either '0' or '1'.
 
 #include <bits/stdc++.h>
 using namespace std;
+class Solution {
+public:
+    int countBinarySubstrings(string s) {
+        int prev = 0;
+        int curr = 1;
+        int ans = 0;
+
+        for (int i = 1; i < s.size(); i++) {
+            if (s[i] == s[i - 1]) {
+                curr++;
+            } else {
+                ans += min(prev, curr);
+                prev = curr;
+                curr = 1;
+            }
+        }
+
+        ans += min(prev, curr);
+
+        return ans;
+    }
+};

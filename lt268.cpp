@@ -71,7 +71,7 @@ int missingNumber(vector<int> &nums) {
   return xorRes;
 }
 
-// ****************** Two numbers missinf ********************
+// ****************** Two numbers missing ********************
 
 pair<int, int> missingTwo(vector<int> &nums, int n) {
   int xr = 0;
