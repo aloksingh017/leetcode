@@ -1,3 +1,8 @@
+/*
+Complexity
+Union Find: O(n² α(n))
+Space: O(n): Since n ≤ 300, this easily fits the constraints.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
