@@ -72,11 +72,8 @@ public:
         int moves = 0;
 
         while (!q.empty()) {
-
             int sz = q.size();
-
             while (sz--) {
-
                 string cur = q.front();
                 q.pop();
 
@@ -84,7 +81,6 @@ public:
                     return moves;
 
                 for (int i = 0; i < 4; i++) {
-
                     string up = cur;
                     string down = cur;
 
