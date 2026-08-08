@@ -17,6 +17,11 @@ Constraints:
 
 1 <= s.length <= 500
 s consists of lowercase English letters.
+
+Max Heap
+ TC: O(n log 26) ≈ O(n)
+ SC: O(26)
+Always choose most frequent available
 */
 
 #include <bits/stdc++.h>
