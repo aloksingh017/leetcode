@@ -32,27 +32,22 @@ s[i] is either '0' or '1'.
 
 */
 
-#include <bits/stdc++.h>
-using namespace std;
 class Solution {
 public:
     int countBinarySubstrings(string s) {
+        int cnt = 0;
         int prev = 0;
-        int curr = 1;
-        int ans = 0;
-
-        for (int i = 1; i < s.size(); i++) {
-            if (s[i] == s[i - 1]) {
-                curr++;
-            } else {
-                ans += min(prev, curr);
-                prev = curr;
-                curr = 1;
-            }
+        int cur = 0;
+        int n = s.size();
+        for(int i=0;i<n;){
+            int j = i;
+            while(j<n && s[i]==s[j])
+                j++;
+            cur = j-i;
+            cnt += min(prev,cur);
+            prev= cur;
+            i=j;
         }
-
-        ans += min(prev, curr);
-
-        return ans;
+        return cnt;
     }
 };
