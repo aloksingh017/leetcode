@@ -1,3 +1,5 @@
+/*
+1415. The k-th Lexicographical String of All Happy Strings of Length n.
 A happy string is a string that:
 
 consists only of letters of the set ['a', 'b', 'c'].
@@ -32,7 +34,16 @@ Constraints:
 1 <= n <= 10
 1 <= k <= 100
 
+the overall worst-case time is:
 
+O(n × 3 × 2^(n-1))
+= O(n × 2^n)
+
+Space:
+
+O(n)
+
+*/
 
 class Solution {
 public:

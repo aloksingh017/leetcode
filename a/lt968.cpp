@@ -1,3 +1,10 @@
+/*
+968. Binary Tree Cameras
+You are given the root of a binary tree. We install cameras on the tree nodes where each camera at a node can monitor its parent, itself, and its immediate children.
+
+Return the minimum number of cameras needed to monitor all nodes of the tree.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -11,7 +18,6 @@ public:
   // 2 -> COVERED
 
   int dfs(TreeNode *root) {
-
     // Null nodes are already covered
     if (root == NULL)
       return 2;

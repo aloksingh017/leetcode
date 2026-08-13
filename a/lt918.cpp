@@ -43,6 +43,7 @@ public:
         int minSum = nums[0];
         int curMin = nums[0];
         int total= nums[0];
+        
         for(int i = 1;i<n;i++){
             total += nums[i];
             curMax = max(nums[i], curMax+nums[i]);

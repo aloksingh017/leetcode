@@ -27,19 +27,13 @@ class Solution {
 public:
     vector<vector<string>> ans;
 
-    void solve(int row, int n,
-               vector<string>& board,
-               vector<int>& col,
-               vector<int>& diag1,
-               vector<int>& diag2) {
-
+    void solve(int row, int n, vector<string>& board, vector<int>& col, vector<int>& diag1, vector<int>& diag2) {
         if (row == n) {
             ans.push_back(board);
             return;
         }
 
         for (int c = 0; c < n; c++) {
-
             if (col[c] || diag1[row - c + n - 1] || diag2[row + c])
                 continue;
 

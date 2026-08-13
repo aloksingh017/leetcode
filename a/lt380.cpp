@@ -48,14 +48,12 @@ public:
   RandomizedSet() {}
 
   bool search(int val) {
-
     if (mp.find(val) != mp.end())
       return true;
     return false;
   }
 
   bool insert(int val) {
-
     if (search(val))
       return false;
 
@@ -65,7 +63,6 @@ public:
   }
 
   bool remove(int val) {
-
     if (!search(val))
       return false;
 

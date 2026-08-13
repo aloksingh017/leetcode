@@ -67,7 +67,6 @@ public:
   }
 
   void unionBySize(int u, int v) {
-
     int ulp_u = findPar(u);
     int ulp_v = findPar(v);
 
@@ -96,9 +95,7 @@ public:
 
     // Build connected components
     for (int i = 0; i < n; i++) {
-
       for (int j = i + 1; j < n; j++) {
-
         if (graph[i][j] == 1) {
           ds.unionBySize(i, j);
         }
@@ -120,7 +117,6 @@ public:
     int ans = initial[0];
 
     for (auto node : initial) {
-
       int root = ds.findPar(node);
 
       // unique infected node

@@ -86,12 +86,9 @@ public:
         };
 
         for(int i=0;i<rows;i++) {
-
             for(int j=0;j<cols;j++) {
-
                 if(grid[i][j]=='0')
                     continue;
-
                 islands++;
 
                 queue<pair<int,int>> q;

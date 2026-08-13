@@ -11,17 +11,15 @@ struct TreeNode {
 
 class Solution {
 public:
-  // Function to change the values of the nodes
-  // based on the sum of its children's values.
+  // Function to change the values of the nodes based on the sum of its children's values.
+  
   void changeTree(TreeNode *root) {
-    // Base case: If the current node
-    // is NULL, return and do nothing.
+    // Base case: If the current node is NULL, return and do nothing.
     if (root == NULL) {
       return;
     }
 
-    // Calculate the sum of the values of
-    // the left and right children, if they exist.
+    // Calculate the sum of the values of the left and right children, if they exist.
     int child = 0;
     if (root->left) {
       child += root->left->val;
@@ -30,13 +28,11 @@ public:
       child += root->right->val;
     }
 
-    // Compare the sum of children with
-    // the current node's value and update
+    // Compare the sum of children with the current node's value and update
     if (child >= root->val) {
       root->val = child;
     } else {
-      // If the sum is smaller, update the
-      // child with the current node's value.
+      // If the sum is smaller, update the child with the current node's value.
       if (root->left) {
         root->left->val = root->val;
       } else if (root->right) {
@@ -44,14 +40,11 @@ public:
       }
     }
 
-    // Recursively call the function
-    // on the left and right children.
+    // Recursively call the function on the left and right children.
     changeTree(root->left);
     changeTree(root->right);
 
-    // Calculate the total sum of the
-    // values of the left and right
-    // children, if they exist.
+    // Calculate the total sum of the values of the left and right children, if they exist.
     int tot = 0;
     if (root->left) {
       tot += root->left->val;
@@ -60,9 +53,7 @@ public:
       tot += root->right->val;
     }
 
-    // If either left or right child
-    // exists, update the current node's
-    // value with the total sum.
+    // If either left or right child exists, update the current node's  value with the total sum.
     if (root->left or root->right) {
       root->val = tot;
     }

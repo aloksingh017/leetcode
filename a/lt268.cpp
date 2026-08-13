@@ -75,7 +75,6 @@ int missingNumber(vector<int> &nums) {
 
 pair<int, int> missingTwo(vector<int> &nums, int n) {
   int xr = 0;
-
   for (int num : nums)
     xr ^= num;
 

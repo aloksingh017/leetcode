@@ -22,6 +22,9 @@ Output: 3
 Constraints:
 0 <= nums.length <= 105
 -109 <= nums[i] <= 109
+
+Time: O(n) average, O(n²) worst-case with pathological hash collisions
+Space: O(n)
 */
 #include <bits/stdc++.h>
 using namespace std;
