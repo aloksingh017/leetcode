@@ -208,13 +208,7 @@ public:
 
         // bestEnergy[row][col][mask]
         // Maximum energy with which we have reached this state
-        vector<vector<vector<int>>> bestEnergy(
-            m,
-            vector<vector<int>>(
-                n,
-                vector<int>(1 << litterCount, -1)
-            )
-        );
+        vector<vector<vector<int>>> bestEnergy(m,vector<vector<int>>(n,vector<int>(1 << litterCount, -1)));
 
         // {row, col, currentEnergy, mask}
         queue<array<int, 4>> q;
@@ -268,12 +262,7 @@ public:
 
                         bestEnergy[nr][nc][newMask] = newEnergy;
 
-                        q.push({
-                            nr,
-                            nc,
-                            newEnergy,
-                            newMask
-                        });
+                        q.push({nr,nc,newEnergy,newMask});
                     }
                 }
             }
