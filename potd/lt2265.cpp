@@ -24,7 +24,24 @@ Output: 1
 Explanation: For the node with value 1: The average of its subtree is 1 / 1 = 1.
  
 Constraints:
-The number of nodes in the tree is in the range [1, 1000].
+The number of nodes in the tree is in the range [1    int ans = 0;
+    pair<int , int> solve(TreeNode* root){
+        if(root == NULL)
+            return {0,0};
+        auto left = solve(root->left);
+        auto right = solve(root->right);
+
+        int sum = left.first + right.first + root->val;
+        int count = left.second + right.second + 1;
+
+        if(root-> val == sum/count)
+            ans++;
+        return {sum , count};
+    }
+    int averageOfSubtree(TreeNode* root) {
+        solve(root);
+        return ans;
+    }, 1000].
 0 <= Node.val <= 1000
 */
 
