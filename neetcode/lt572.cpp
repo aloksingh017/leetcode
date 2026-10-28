@@ -40,6 +40,5 @@ bool isSame(TreeNode* root, TreeNode* subRoot){
         if(isSame(root, subRoot))
             return true;
         
-        return isSubtree(root->left, subRoot) ||
-       isSubtree(root->right, subRoot);
+    return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
